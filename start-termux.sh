@@ -27,7 +27,12 @@ if [ ! -f "./mediamtx" ]; then
     tar -xzf mediamtx.tar.gz mediamtx mediamtx.yml
     rm mediamtx.tar.gz
     chmod +x mediamtx
-    echo "[*] MediaMTX berhasil diunduh!"
+    
+    echo "[*] Mengaktifkan API pada konfigurasi MediaMTX..."
+    # Mengganti 'api: no' menjadi 'api: yes' agar dashboard bisa membaca stream
+    sed -i 's/^api: no/api: yes/' mediamtx.yml
+    
+    echo "[*] MediaMTX berhasil diunduh dan disiapkan!"
 fi
 
 # 3. Jalankan MediaMTX di Background (&)
